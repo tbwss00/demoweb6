@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Academia Flamenco con Talento | Pasión y Arte</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #fffcf8;
+      color: #1e1a17;
+      scroll-behavior: smooth;
+    }
+
+    /* Paleta: rojo, negro, blanco */
+    :root {
+      --rojo-flamenco: #c0392b;
+      --rojo-intenso: #a82313;
+      --negro-profundo: #1f1a17;
+      --blanco-puro: #ffffff;
+      --sombra: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    }
+
+    /* Header & Logo */
+    header {
+      background-color: var(--blanco-puro);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 2px solid var(--rojo-flamenco);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+
+    .logo-svg {
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+      transition: transform 0.2s;
+      background: white;
+      border-radius: 50%;
+      padding: 4px;
+      box-shadow: 0 0 0 2px var(--rojo-flamenco);
+    }
+    .logo-svg:hover {
+      transform: scale(1.02);
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      color: var(--negro-profundo);
+    }
+    .logo-text span {
+      color: var(--rojo-flamenco);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    nav ul li a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--negro-profundo);
+      transition: 0.2s;
+      font-size: 1rem;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--rojo-flamenco);
+      border-bottom-color: var(--rojo-flamenco);
+    }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid rgba(192, 57, 43, 0.15);
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+      color: var(--negro-profundo);
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: var(--rojo-flamenco);
+      border-radius: 4px;
+    }
+
+    /* HOME */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+      justify-content: space-between;
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--negro-profundo);
+    }
+    .hero-content h1 .rojo {
+      color: var(--rojo-flamenco);
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin: 1.5rem 0;
+      color: #2d2a27;
+    }
+    .btn-primary {
+      background: var(--rojo-flamenco);
+      color: white;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(192,57,43,0.2);
+    }
+    .btn-primary:hover {
+      background: var(--rojo-intenso);
+      transform: translateY(-2px);
+    }
+    .hero-image {
+      flex: 1;
+      background: linear-gradient(135deg, #f5e6de, #fff0e8);
+      border-radius: 40px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 28px;
+      box-shadow: var(--sombra);
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    /* Nosotros */
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .about-card {
+      flex: 1;
+      background: var(--blanco-puro);
+      padding: 2rem;
+      border-radius: 28px;
+      box-shadow: var(--sombra);
+      border-left: 5px solid var(--rojo-flamenco);
+    }
+    .about-card i {
+      font-size: 2.2rem;
+      color: var(--rojo-flamenco);
+      margin-bottom: 1rem;
+    }
+    .about-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Servicios */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .service-item {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem;
+      transition: all 0.2s;
+      box-shadow: var(--sombra);
+      text-align: center;
+      border-bottom: 3px solid var(--rojo-flamenco);
+    }
+    .service-item i {
+      font-size: 2.5rem;
+      color: var(--rojo-flamenco);
+      margin-bottom: 1rem;
+    }
+    .service-item h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* GALERÍA con Carruseles */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .galeria-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .galeria-card:hover {
+      transform: translateY(-5px);
+    }
+    /* Carrusel */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .carousel-slides {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      cursor: pointer;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .carousel-btn:hover {
+      background: var(--rojo-flamenco);
+    }
+    .carousel-btn.prev {
+      left: 10px;
+    }
+    .carousel-btn.next {
+      right: 10px;
+    }
+    .carousel-dots {
+      text-align: center;
+      padding: 8px 0;
+      background: rgba(0,0,0,0.5);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      z-index: 2;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .dot.active {
+      background: var(--rojo-flamenco);
+      transform: scale(1.2);
+    }
+    .info-evento {
+      padding: 1.2rem;
+      background: white;
+    }
+    .info-evento h4 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--rojo-flamenco);
+    }
+    .info-evento p {
+      font-size: 0.9rem;
+      color: #3d3a38;
+      margin-top: 0.3rem;
+    }
+
+    /* Modal/Lightbox */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 70%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .modal-caption {
+      color: white;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      background: rgba(0,0,0,0.7);
+      padding: 12px 24px;
+      border-radius: 40px;
+      max-width: 80%;
+    }
+    .modal-caption h3 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      color: var(--rojo-flamenco);
+    }
+    .modal-caption p {
+      margin: 5px 0;
+    }
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .close-modal:hover {
+      color: var(--rojo-flamenco);
+    }
+
+    /* Contacto */
+    .contacto-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    .contact-info {
+      flex: 1;
+      background: var(--negro-profundo);
+      padding: 2rem;
+      border-radius: 28px;
+      color: white;
+    }
+    .contact-info i {
+      color: var(--rojo-flamenco);
+      margin-right: 10px;
+    }
+    .contact-info p {
+      margin: 1rem 0;
+    }
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #25D366;
+      color: white;
+      padding: 0.7rem 1.4rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+    .whatsapp-link i {
+      color: white;
+      margin: 0;
+    }
+    .whatsapp-link:hover {
+      background-color: #128C7E;
+    }
+    .contact-form {
+      flex: 1.5;
+      background: white;
+      padding: 2rem;
+      border-radius: 28px;
+      box-shadow: var(--sombra);
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.4rem;
+      color: var(--negro-profundo);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--rojo-flamenco);
+      box-shadow: 0 0 0 2px rgba(192,57,43,0.2);
+    }
+    button[type="submit"] {
+      background: var(--rojo-flamenco);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+    }
+    footer {
+      background: var(--negro-profundo);
+      color: #ccc;
+      text-align: center;
+      padding: 2rem;
+    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      nav ul {
+        gap: 1.2rem;
+        justify-content: center;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      section {
+        padding: 3rem 1.5rem;
+      }
+      .carousel-slide img {
+        height: 200px;
+      }
+    }
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo-container">
+    <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="white" stroke="#C0392B" stroke-width="2"/>
+      <circle cx="50" cy="24" r="8" fill="#1F1A17" />
+      <path d="M50 16 L52 9 L48 9 Z" fill="#C0392B" />
+      <path d="M41 34 L59 34 L61 52 L39 52 Z" fill="#1F1A17" />
+      <path d="M41 38 C30 32, 20 42, 26 50" stroke="#1F1A17" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M59 38 C70 32, 80 42, 74 50" stroke="#1F1A17" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <circle cx="26" cy="50" r="2.5" fill="#C0392B" />
+      <circle cx="74" cy="50" r="2.5" fill="#C0392B" />
+      <path d="M38 53 L34 73 L46 69 L54 73 L66 69 L62 53 Z" fill="#C0392B" />
+      <path d="M40 53 L36 70 L46 67 L54 70 L64 67 L60 53 Z" fill="#1F1A17" opacity="0.9" />
+      <path d="M34 73 L29 81 L40 77 L50 83 L60 77 L71 81 L66 73" fill="#C0392B" />
+      <circle cx="45" cy="62" r="1.2" fill="white" />
+      <circle cx="55" cy="62" r="1.2" fill="white" />
+      <rect x="44" y="80" width="5" height="6" fill="#1F1A17" rx="1" />
+      <rect x="51" y="80" width="5" height="6" fill="#1F1A17" rx="1" />
+    </svg>
+    <div class="logo-text">FLAMENCO <span>CON TALENTO</span></div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#home">INICIO</a></li>
+      <li><a href="#nosotros">NOSOTROS</a></li>
+      <li><a href="#servicios">SERVICIOS</a></li>
+      <li><a href="#galeria">GALERÍA</a></li>
+      <li><a href="#contacto">CONTACTO</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="home">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>DESPIERTA TU <span class="rojo">DUENDE</span><br> BAILA FLAMENCO</h1>
+        <p>Para niños y adultos, desde iniciación hasta nivel amateur con sólida base profesional. Vive el arte, el compás y la pasión en nuestra academia. ¡Conviértete en bailaor o bailaora con garra!</p>
+        <a href="#contacto" class="btn-primary">¡Inscríbete ahora! <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="hero-image">
+        <img src="https://cdn.pixabay.com/photo/2019/08/22/18/01/flamenco-4423682_640.jpg" alt="Bailaora flamenca en evento real">
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros">
+    <h2 class="section-title">NOSOTROS</h2>
+    <div class="about-grid">
+      <div class="about-card"><i class="fas fa-child"></i><h3>Niños & Jóvenes</h3><p>Fomentamos la disciplina, coordinación y amor por el flamenco desde temprana edad.</p></div>
+      <div class="about-card"><i class="fas fa-user-graduate"></i><h3>Adultos amateur & profesional</h3><p>Desde cero hasta niveles avanzados. Base sólida para el profesionalismo.</p></div>
+      <div class="about-card"><i class="fas fa-heart"></i><h3>Nuestra Misión</h3><p>Formar bailarines íntegros con base técnica y sentimiento, abriendo puertas a escenarios.</p></div>
+    </div>
+    <p class="text-center" style="margin-top:2rem; font-style:italic;">⭐ Más de 10 años creando artistas con raíces y proyección.</p>
+  </section>
+
+  <section id="servicios">
+    <h2 class="section-title">SERVICIOS</h2>
+    <p style="margin-bottom:1.5rem;">Aspectos fundamentales para convertirte en un gran bailaor/a de flamenco:</p>
+    <div class="services-grid">
+      <div class="service-item"><i class="fas fa-shoe-prints"></i><h4>Zapateado</h4><p>Precisión rítmica y velocidad.</p></div>
+      <div class="service-item"><i class="fas fa-music"></i><h4>Compás flamenco</h4><p>Palos como soleá, bulerías, tangos.</p></div>
+      <div class="service-item"><i class="fas fa-hand-peace"></i><h4>Braceo & Manos</h4><p>Elegancia y expresividad.</p></div>
+      <div class="service-item"><i class="fas fa-theater-masks"></i><h4>Expresión & Duende</h4><p>Interpretación y conexión emocional.</p></div>
+      <div class="service-item"><i class="fas fa-arrows-alt"></i><h4>Postura & Giros</h4><p>Manejo del espacio escénico.</p></div>
+      <div class="service-item"><i class="fas fa-drumstick-bite"></i><h4>Castañuelas</h4><p>Ritmo y percusión corporal.</p></div>
+    </div>
+  </section>
+
+  <!-- GALERÍA CON SLIDESHOW Y MODAL -->
+  <section id="galeria">
+    <h2 class="section-title">GALERÍA DE EVENTOS</h2>
+    <p style="margin-bottom:1rem;">Espectáculos flamencos en Madrid, Sevilla y Valencia. Haz clic en cualquier imagen para ampliar.</p>
+    <div class="galeria-grid" id="galeriaGrid"></div>
+  </section>
+
+  <!-- Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+
+  <section id="contacto">
+    <h2 class="section-title">CONTACTO</h2>
+    <div class="contacto-wrapper">
+      <div class="contact-info">
+        <i class="fas fa-map-pin"></i> <strong>📍 Sede central:</strong> Calle del Compás, 12 · Madrid
+        <p><i class="fas fa-phone-alt"></i> +34 912 345 678</p>
+        <p><i class="fas fa-envelope"></i> info@flamencontalento.es</p>
+        <p><i class="fas fa-clock"></i> Horario: L-V 10:00–21:00 | Sábados 10:00–14:00</p>
+        <p><a href="https://wa.me/34912345678?text=Hola%20Flamenco%20con%20Talento" class="whatsapp-link" target="_blank"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a></p>
+        <hr style="margin:20px 0; border-color:#c0392b50;">
+        <p><i class="fas fa-globe"></i> @flamencoConTalento</p>
+      </div>
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group"><label>Nombre *</label><input type="text" id="nombre" required></div>
+          <div class="form-group"><label>Email *</label><input type="email" id="email" required></div>
+          <div class="form-group"><label>Teléfono *</label><input type="tel" id="telefono" required></div>
+          <div class="form-group"><label>Área de interés *</label><select id="interes" required><option value="">Selecciona</option><option value="academia">Academia</option><option value="presentaciones">Presentaciones</option><option value="eventos">Eventos</option><option value="otros">Otros</option></select></div>
+          <div class="form-group"><label>Comentario</label><textarea id="comentario" rows="3"></textarea></div>
+          <button type="submit">Enviar consulta</button>
+          <p id="formFeedback" style="margin-top:1rem; font-size:0.85rem;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>© 2026 Academia Flamenco con Talento · Formación amateur y proyección profesional.</p>
+  <p>Todos los derechos reservados. <i class="fas fa-heart" style="color:#c0392b;"></i> Sigue tu sueño flamenco</p>
+</footer>
+
+<script>
+  // Datos para cada evento: múltiples imágenes, título, subtítulo, descripción
+  const eventos = [
+    {
+      ciudad: "Madrid",
+      titulo: "🔥 Madrid – Noches de Tablao",
+      subtitulo: "Teatro Flamengo Madrid · Temporada 2025",
+      descripcion: "Espectáculo contemporáneo con raíces históricas, bailaoras de proyección internacional. Contraste de la soleá tradicional con pinceladas modernas.",
+      imagenes: [
+        "https://cdn.pixabay.com/photo/2016/11/23/17/31/flamenco-1853929_640.jpg",
+        "https://cdn.pixabay.com/photo/2017/06/27/12/24/flamenco-2447480_640.jpg",
+        "https://cdn.pixabay.com/photo/2019/06/13/18/51/flamenco-4272179_640.jpg"
+      ]
+    },
+    {
+      ciudad: "Sevilla",
+      titulo: "💃 Sevilla – Bienal de Flamenco",
+      subtitulo: "Teatro de la Maestranza · Edición Especial",
+      descripcion: "Fusión entre lo jondo y tendencias vanguardistas. Homenaje a los cantes de ida y vuelta con gran elenco de artistas jóvenes.",
+      imagenes: [
+        "https://cdn.pixabay.com/photo/2019/08/04/17/15/flamenco-4384432_640.jpg",
+        "https://cdn.pixabay.com/photo/2019/08/23/19/04/flamenco-4426657_640.jpg",
+        "https://cdn.pixabay.com/photo/2015/10/13/10/37/flamenco-985740_640.jpg"
+      ]
+    },
+    {
+      ciudad: "Valencia",
+      titulo: "🎭 Valencia – Flamenco Fusión Actual",
+      subtitulo: "Palau de les Arts · Vanguardias Flamencas",
+      descripcion: "Encuentro de nuevas generaciones, puesta en escena innovadora con raíces históricas. Contraste de bulerías y electrónica ambiental.",
+      imagenes: [
+        "https://cdn.pixabay.com/photo/2015/09/08/21/04/flamenco-930456_640.jpg",
+        "https://cdn.pixabay.com/photo/2019/09/28/16/42/flamenco-4511240_640.jpg",
+        "https://cdn.pixabay.com/photo/2018/08/27/18/15/flamenco-3635341_640.jpg"
+      ]
+    }
+  ];
+
+  const galeriaGrid = document.getElementById('galeriaGrid');
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const modalCaption = document.getElementById('modalCaption');
+  const closeModal = document.querySelector('.close-modal');
+
+  // Función para crear un carrusel independiente
+  function crearCarrusel(evento, indexEvento) {
+    const card = document.createElement('div');
+    card.className = 'galeria-card';
+
+    // Contenedor carrusel
+    const carouselContainer = document.createElement('div');
+    carouselContainer.className = 'carousel-container';
+    
+    const slidesContainer = document.createElement('div');
+    slidesContainer.className = 'carousel-slides';
+    
+    evento.imagenes.forEach((imgSrc, idx) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.alt = `${evento.ciudad} - imagen ${idx+1}`;
+      img.style.cursor = 'pointer';
+      // Al hacer clic en la imagen, abrir modal con datos de esa imagen
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mostrarModal(imgSrc, evento.titulo, evento.subtitulo, evento.descripcion);
+      });
+      slide.appendChild(img);
+      slidesContainer.appendChild(slide);
+    });
+    
+    carouselContainer.appendChild(slidesContainer);
+    
+    // Botones prev/next
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'carousel-btn prev';
+    prevBtn.innerHTML = '❮';
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'carousel-btn next';
+    nextBtn.innerHTML = '❯';
+    carouselContainer.appendChild(prevBtn);
+    carouselContainer.appendChild(nextBtn);
+    
+    // Dots
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'carousel-dots';
+    const dots = [];
+    for (let i = 0; i < evento.imagenes.length; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i, slidesContainer, dots, evento.imagenes.length));
+      dotsContainer.appendChild(dot);
+      dots.push(dot);
+    }
+    carouselContainer.appendChild(dotsContainer);
+    
+    let currentIndex = 0;
+    const totalSlides = evento.imagenes.length;
+    
+    function updateCarousel() {
+      slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+    }
+    
+    function goToSlide(index, slidesCont, dotArray, total) {
+      if (index < 0) index = 0;
+      if (index >= total) index = total - 1;
+      currentIndex = index;
+      updateCarousel();
+    }
+    
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    });
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+    });
+    
+    // Información del evento
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'info-evento';
+    infoDiv.innerHTML = `<h4>${evento.titulo}</h4><p><i class="fas fa-map-marker-alt"></i> ${evento.subtitulo}</p><p>${evento.descripcion}</p>`;
+    
+    card.appendChild(carouselContainer);
+    card.appendChild(infoDiv);
+    
+    // Exponer función global para que los dots funcionen correctamente (necesitamos que goToSlide acceda a currentIndex)
+    // Vamos a reasignar el evento de dot dentro del closure
+    // Mejor: reconstruir los dots con eventos que afecten a la variable local
+    // Como ya tenemos goToSlide definida, actualizamos los dots
+    const newDots = dotsContainer.querySelectorAll('.dot');
+    newDots.forEach((dot, i) => {
+      dot.removeEventListener('click', () => {});
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateCarousel();
+      });
+    });
+    
+    return card;
+  }
+  
+  function mostrarModal(imgSrc, titulo, subtitulo, descripcion) {
+    modal.style.display = 'flex';
+    modalImg.src = imgSrc;
+    modalCaption.innerHTML = `<h3>${titulo}</h3><p><strong>${subtitulo}</strong></p><p>${descripcion}</p>`;
+  }
+  
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.style.display = 'none';
+  });
+  
+  // Construir galería
+  eventos.forEach((evento, idx) => {
+    const card = crearCarrusel(evento, idx);
+    galeriaGrid.appendChild(card);
+  });
+  
+  // Smooth scroll
+  document.querySelectorAll('nav a, .btn-primary[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElem = document.querySelector(targetId);
+        if (targetElem) {
+          e.preventDefault();
+          targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+  
+  // Formulario
+  const form = document.getElementById('contactForm');
+  const feedback = document.getElementById('formFeedback');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const interes = document.getElementById('interes').value;
+    if (!nombre || !email || !telefono || !interes) {
+      feedback.innerHTML = '<span style="color:#c0392b;">⚠️ Complete los campos obligatorios.</span>';
+      return;
+    }
+    if (!email.includes('@')) {
+      feedback.innerHTML = '<span style="color:#c0392b;">✉️ Email inválido.</span>';
+      return;
+    }
+    feedback.innerHTML = '<span style="color:#2e7d32;">✅ Mensaje enviado. ¡Olé!</span>';
+    form.reset();
+    setTimeout(() => feedback.innerHTML = '', 4000);
+  });
+</script>
+</body>
+</html>
